@@ -33,7 +33,11 @@ studentnummer = 1788301
         lijst aanneemt bij álle tussenstappen bij toepassing van
         bovenstaand sorteeralgoritme.
 """
-#       TODO: [geef hier je antwoord]
+#       TODO: [[ 4, 3, 1, 2 ]
+#        [ 3, 4, 1, 2 ]
+#        [ 3, 1, 4, 2 ]
+#        [ 3, 1, 4, 2 ]
+#        ]
 """
     1b. Implementatie
         Implementeer het sorteeralgoritme in Python in een functie
@@ -91,12 +95,14 @@ def my_sort(lst):
     lst_sorted = []
     for i in lst:
         lst_sorted.append(i)
-    def sorteren():
+    niet_klaar = True
+
+    while niet_klaar:
+        niet_klaar = False
         for i in range(len(lst_sorted) - 1):
             if lst_sorted[i] > lst_sorted[i + 1]:
                 lst_sorted[i], lst_sorted[i + 1] = lst_sorted[i + 1], lst_sorted[i]
-                sorteren()
-    sorteren()
+                niet_klaar = True
     return lst_sorted
 
 
@@ -127,32 +133,21 @@ def binary_search_recursive(lst, target):
     Returns:
         bool: Of het element in de lijst voorkomt.
     """
-    low = 0
-    high = len(lst)-1
-    mid = high // 2
-    print(mid)
-
-    # def binary_search(item_list, item):
-    #     first = 0
-    #     last = len(item_list) - 1
-    #     found = False
-    #     while (first <= last and not found):
-    #         mid = (first + last) // 2
-    #         if item_list[mid] == item:
-    #             found = True
-    #         else:
-    #             if item < item_list[mid]:
-    #                 last = mid - 1
-    #             else:
-    #                 first = mid + 1
-    #     return found
-    #
-    # # print(binary_search([1, 2, 3, 5, 8], 6))
-    # # print(binary_search([1, 2, 3, 5, 8], 5))
-    # https: // www.w3resource.com / python - exercises / data - structures - and -algorithms / python - search - and -sorting - exercise - 1.
-    # php
-
-    return False
+    hoogste = len(lst)
+    mid = hoogste // 2
+    tijdelijke_lijst = []
+    if lst[mid] == target:
+        return True
+    if len(lst) == 1:
+        return False
+    if lst[mid] > target:
+        for i in range(0, mid):
+            tijdelijke_lijst.append(lst[i])
+        return binary_search_recursive(tijdelijke_lijst, target)
+    if lst[mid] < target:
+        for i in range(mid, hoogste):
+            tijdelijke_lijst.append(lst[i])
+        return binary_search_recursive(tijdelijke_lijst, target)
 
 
 """

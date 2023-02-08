@@ -1,19 +1,14 @@
-def sorteren(lst):
-    lijst = []
+def linear_search_recursive(lst, target):
+    """
+    Zoek een element in de gegeven lijst door middel van recursief lineair zoeken.
+    Zorg dat de inhoud van de gegeven lijst niet verandert.
+    Args:
+        lst (list):     Een lijst met elementen van gelijk type, bijvoorbeeld gehele getallen.
+        target (int):   Het gezochte element.
+    Returns:
+        bool: Of het element in de lijst voorkomt.
+    """
     for i in lst:
-        lijst.append(i)
-    print(lijst)
-    def sort():
-        for i in range(len(lijst)-1):
-            if lijst[i] > lijst[i+1]:
-                print(lijst[i])
-                lijst[i], lijst[i+1] = lijst[i+1], lijst[i]
-                sort()
-    sort()
-    return lijst
-
-
-
-print(sorteren([-53, -92, 61, 77, 78, -25]))
-
-
+        if i == target:
+            return True
+    return False
