@@ -91,7 +91,6 @@ def my_sort(lst):
     Returns:
         list: Een nieuwe, gesorteerde variant van lijst `lst`.
     """
-    # lst_sorted = None
     lst_sorted = []
     for i in lst:
         lst_sorted.append(i)
@@ -116,10 +115,12 @@ def linear_search_recursive(lst, target):
     Returns:
         bool: Of het element in de lijst voorkomt.
     """
-    for i in lst:
-        if i == target:
-            return True
-    return False
+    if len(lst) == 0:
+        return False
+    if lst[0] == target:
+        return True
+    else:
+        return linear_search_recursive(lst[1:], target)
 
 
 def binary_search_recursive(lst, target):
@@ -135,19 +136,14 @@ def binary_search_recursive(lst, target):
     """
     hoogste = len(lst)
     mid = hoogste // 2
-    tijdelijke_lijst = []
     if lst[mid] == target:
         return True
     if len(lst) == 1:
         return False
     if lst[mid] > target:
-        for i in range(0, mid):
-            tijdelijke_lijst.append(lst[i])
-        return binary_search_recursive(tijdelijke_lijst, target)
+        return binary_search_recursive(lst[:mid], target)
     if lst[mid] < target:
-        for i in range(mid, hoogste):
-            tijdelijke_lijst.append(lst[i])
-        return binary_search_recursive(tijdelijke_lijst, target)
+        return binary_search_recursive(lst[mid:], target)
 
 
 """
